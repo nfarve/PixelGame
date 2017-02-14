@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+    {% block body_content %}
+        <div class="row">
+            <div class="large-12 columns">
+                <h1 style="text-align:center">Signup for Pixel Game</h1>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class ="medium-6 large-8 large-offset-2 columns">
+                {% if registered %}
+                <strong>Thank you for registering!</strong>
+                <a href="/">Return to the homepage.</a><br />
+                {% else %}
+               <strong>Register here!</strong><br />
+
+                <form id="user_form" method="post" action="/register/"
+                        enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <!-- Display each form. The as_p method wraps each element in a paragraph
+                         (<p>) element. This ensures each element appears on a new line,
+                         making everything look neater. -->
+                    {{ user_form.as_p }}
+
+                    <!-- Provide a button to click to submit the form. -->
+                    <input class = "button" type="submit" name="submit" value="Register" />
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    {% endblock %}
